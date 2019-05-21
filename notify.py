@@ -12,7 +12,7 @@ URGENCY_NORMAL = 1
 URGENCY_CRITICAL = 2
 urgency_levels = [URGENCY_LOW, URGENCY_NORMAL, URGENCY_CRITICAL]
 
-# Initialise the module (following pynotify's API) -----------------------------
+# Initialise the module 
 
 initted = False
 appname = ""
@@ -69,13 +69,13 @@ def init(app_name, mainloop=None):
 
 
 def is_initted():
-    """Has init() been called? Only exists for compatibility with pynotify.
+    """Has init() been called? 
     """
     return initted
 
 
 def get_app_name():
-    """Return appname. Only exists for compatibility with pynotify.
+    """Return appname. 
     """
     return appname
 
@@ -118,7 +118,7 @@ def _action_callback(nid, action):
     try:
         n = notifications_registry[nid]
     except KeyError:
-        # this message was created through some other program.
+       
         return
     n._action_callback(action)
 
@@ -128,7 +128,7 @@ def _closed_callback(nid, reason):
     try:
         n = notifications_registry[nid]
     except KeyError:
-        # this message was created through some other program.
+        
         return
     n._closed_callback(n)
     del notifications_registry[nid]
@@ -142,7 +142,7 @@ def no_op(*args):
 # Controlling notifications ----------------------------------------------------
 
 
-ActionsDictClass = dict  # fallback for old version of Python
+ActionsDictClass = dict  
 try:
     from collections import OrderedDict
     ActionsDictClass = OrderedDict
