@@ -1,4 +1,4 @@
-### Desktop notifier in python
+## Desktop notifier in python
 
 The score of currently ongoing matches will be notified on desktop.
 
