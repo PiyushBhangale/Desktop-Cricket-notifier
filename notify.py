@@ -48,9 +48,7 @@ def init(app_name, mainloop=None):
         mainloop = DBusGMainLoop()
     elif mainloop == 'qt':
         from dbus.mainloop.qt import DBusQtMainLoop
-        # For some reason, this only works if we make it the default mainloop
-        # for dbus. That might make life tricky for anyone trying to juggle two
-        # event loops, but I can't see any way round it.
+
         mainloop = DBusQtMainLoop(set_as_default=True)
 
     bus = dbus.SessionBus(mainloop=mainloop)
@@ -316,28 +314,6 @@ class Notification(object):
     def get_data(self, key):
         """n.get_data(key) <--> n.data[key]
 
-        Only exists for compatibility with pynotify.
+
         """
         return self.data[key]
-
-    def set_icon_from_pixbuf(self, icon):
-        """Set a custom icon from a GdkPixbuf.
-        """
-        struct = (
-            icon.get_width(),
-            icon.get_height(),
-            icon.get_rowstride(),
-            icon.get_has_alpha(),
-            icon.get_bits_per_sample(),
-            icon.get_n_channels(),
-            dbus.ByteArray(icon.get_pixels())
-        )
-        self.hints['icon_data'] = struct
-
-    def set_location(self, x, y):
-        """Set the notification location as (x, y), if the server supports it.
-        """
-        if (not isinstance(x, int)) or (not isinstance(y, int)):
-            raise TypeError("x and y must both be ints", (x, y))
-        self.hints['x'] = x
-        self.hints['y'] = y
