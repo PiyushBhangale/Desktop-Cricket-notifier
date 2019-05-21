@@ -1,7 +1,7 @@
 
 
 import time
-import notify2
+from notify import *
 from topnews import topStories
 
 # path to notification window icon
@@ -11,13 +11,13 @@ ICON_PATH = "/home/piyush/Desktop/Python_projects/Desktop_Notifier/1040216.svg"
 newsitems = topStories()
 
 # initialise the d-bus connection
-notify2.init("News Notifier")
+init("News Notifier")
 
 # create Notification object
-n = notify2.Notification(None, icon=ICON_PATH)
+n = Notification(None, icon=ICON_PATH)
 
 # set urgency level
-n.set_urgency(notify2.URGENCY_NORMAL)
+n.set_urgency(URGENCY_NORMAL)
 
 # set timeout for a notification
 n.set_timeout(10000)
