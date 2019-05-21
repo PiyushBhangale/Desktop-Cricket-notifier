@@ -69,13 +69,13 @@ def init(app_name, mainloop=None):
 
 
 def is_initted():
-    """Has init() been called? Only exists for compatibility with pynotify.
+    """Has init() been called? 
     """
     return initted
 
 
 def get_app_name():
-    """Return appname. Only exists for compatibility with pynotify.
+    """Return appname. 
     """
     return appname
 
